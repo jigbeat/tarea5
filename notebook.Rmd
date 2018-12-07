@@ -64,9 +64,9 @@ function_finance = function (x, return = c("yes", "no"), graph = c("type1", "typ
     x %>% ggplot(aes(y = retorno, x= (1:length(retorno)))) +
             geom_line(color= "blue", lwd= .8) +
             labs(
-              x=  "Dias",
+              x=  "Meses",
               y= "Retornos",
-              title = "Retornos Diarios",
+              title = "Retornos Mensuales",
               caption = "Fuente: Yahoo Finance"
             ) +
               theme_gray()
@@ -78,7 +78,7 @@ function_finance = function (x, return = c("yes", "no"), graph = c("type1", "typ
     x %>% ggplot(aes(y=retorno, x = (1:length(retorno)))) +
       geom_line(color="black", lwd =.8) +
       labs(
-        x=  "Dias",
+        x=  "Meses",
         y= "Retornos",
         title = "Retornos Acumulados",
         caption = "Fuente: Yahoo Finance"
