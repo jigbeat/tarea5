@@ -2,6 +2,7 @@
 
 ---
 title: "R Tarea 5"
+author: "Victoria Tapia, Camila Galvez y Jose Gonzalez"
 output:
   html_document:
     df_print: paged
@@ -17,7 +18,8 @@ Pregunta 2
 -----------------------------------------------------------------------
 
 
-* Descarga de las librerias a utilizar 
+* Descarga de las librerias a utilizar:
+
 ```{r}
 library(pdfetch)
 library(ggplot2)
@@ -25,7 +27,7 @@ library(dplyr)
 library(gridExtra)
 ```
 
-* Descarga de las datas base
+* Descarga de las datas base:
 
 ```{r}
 msft=pdfetch_YAHOO("MSFT",fields=c("open","adjclose"),from="2000-01-01", to="2018-08-31", interval="1mo")
@@ -98,19 +100,30 @@ function_finance = function (x, return = c("yes", "no"), graph = c("type1", "typ
   } 
     else if (norm=="no"){ }
     }
-  z
-  w
+    knitr::kable(
+     z 
+)
+  knitr::kable(
+table( w )
+)
   y
  }
 
-function_finance(msft, return = "no", graph = "type2", norm = "yes")  
+```
 
+
+La función está ejecutada con la base de datos de  Microsoft. Y esta entrega los retornos en el método discreto (no), la grafica de retornos acumulados (type2) y el valor JB (yes).  
+
+```{r}
+function_finance(msft, return = "no", graph = "type2", norm = "yes") 
 ```
 
 Pregunta 3
 ------------ 
 
-Parte a 
+Parte (a)
+
+* Se crean las bases de datos para el caso tipo 1:
 
 
 ```{r}
@@ -141,25 +154,28 @@ betas_dataC1 <- data.frame(betas)
 
 ```
 
-Esperanza de los Betas
+Esperanza de $\hat{\beta_1}$:
 
 ```{r}
 eb1 <- apply(betas_dataC1[5:8],2,mean)
-knitr::kable(
-eb1 
+eb1 <- as.data.frame(eb1,row.names = c("50 observaciones","100 observaciones","500 observaciones","1000 observaciones"))
+knitr::kable (
+eb1 %>% rename("E()"="eb1") 
 )
 ```
 
-Varianza de los Betas
+Varianza de $\hat{\beta_1}$ :
 
 ```{r}
+vb1<- as.data.frame( apply(betas_dataC1[5:8],2,var),row.names = c("50 observaciones","100 observaciones","500 observaciones","1000 observaciones"))
 knitr::kable(
-apply(betas_dataC1[5:8],2,var)
+vb1 %>% rename("var()"= "apply(betas_dataC1[5:8], 2, var)")
 )
 ```
 
+Respuesta: En muestras pequeñas , es decir, de 50 observaciones, se aprecia el sesgo claramente en la grafica. Al aumentar el numero de observaciones , se aprecia como $\hat{\beta_1}$ tiende a centrarse y dejar de ser sesgado.
 
-Parte b
+Parte (b)
 
 ```{r}
 g1 <- ggplot(betas_dataC1) + 
@@ -192,7 +208,9 @@ g4 <- ggplot(betas_dataC1) +
 grid.arrange(g1, g2, g3, g4, nrow=2, ncol=2)
 ```
 
-Parte c 
+Parte (c) 
+
+A continuacion se genera el Caso 2
 
 ```{r}
 set.seed(123)
@@ -222,24 +240,29 @@ betas_dataC2 <- data.frame(betas)
 
 ```
 
-Esperanza de los Betas
+Esperanza de $\hat{\beta_1}$ :
 
 ```{r}
-eb1 <- apply(betas_dataC2[5:8],2,mean)
+eb1c1 <-as.data.frame( apply(betas_dataC2[5:8],2,mean),row.names = c("50 observaciones","100 observaciones","500 observaciones","1000 observaciones"))
 knitr::kable(
-eb1 
+eb1c1   %>% rename("E()"="apply(betas_dataC2[5:8], 2, mean)")
 )
 ```
 
-Varianza de los Betas
+Varianza de $\hat{\beta_1}$
 
 ```{r}
+ev1c2 <- as.data.frame( apply(betas_dataC2[5:8],2,var),row.names = c("50 observaciones","100 observaciones","500 observaciones","1000 observaciones"))
+
 knitr::kable(
-apply(betas_dataC2[5:8],2,var)
+ev1c2 %>% rename("var()"="apply(betas_dataC2[5:8], 2, var)")
 )
 ```
 
 Grafica
+
+
+Podemos apreciar que cuando $x_2$ se distribuye uniforme (U~[0,1] ). Ocurre que para los valores pequeños, el $\hat{\beta_1}$ es mas sesgado y se aleja del valor que se le habia asignado (2.5), en comparacion al caso 1. Pero al aumentar el numero de observaciones, se aprecia como este mismo vuelve a dejar de estar sesgado. 
 
 ```{r}
 #graficos Caso 2
@@ -273,6 +296,5 @@ g8 <- ggplot(betas_dataC2) +
   theme_minimal()
 grid.arrange(g5, g6, g7, g8, nrow=2, ncol=2)
 ```
-
 
 
