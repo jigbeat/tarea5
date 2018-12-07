@@ -91,8 +91,8 @@ function_finance = function (x, return = c("yes", "no"), graph = c("type1", "typ
     c <-   matrix(diff(log(x[,2]), lag = 1))
     d <- rbind(0,c)
     x$retorno <- d
-    skew <- {(1/length(x[,1]))* sum((x[,3]-mean(x[,3])^3))}/{(((1/length(x[,1]))* sum((x[,3]-mean(x[,3])^2))))^(3/2)}
-    kur <- {(1/length(x[,1]))* sum((x[,3]-mean(x[,3])^4))}/{(((1/length(x[,1]))* sum((x[,3]-mean(x[,3])^2))))^(2)}
+    skew <- {(1/length(x[,1]))* sum((x[,3]-mean(x[,3]))^3)} /{(((1/length(x[,1]))* sum((x[,3]-mean(x[,3])^2))))^(3/2)}
+    kur <- {(1/length(x[,1]))* sum((x[,3]-mean(x[,3]))^4)}/{(((1/length(x[,1]))* sum((x[,3]-mean(x[,3])^2))))^(2)}
     JB <- length(x[,1]) * {((skew^2)/6) + ((kur-3)^2)/24}
     cat(JB,"jarque-bera")
   } 
