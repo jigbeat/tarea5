@@ -1,5 +1,6 @@
 ---
 title: "R Tarea 5"
+author: "Victoria Tapia, Camila Galvez y Jose Gonzalez"
 output:
   html_document:
     df_print: paged
