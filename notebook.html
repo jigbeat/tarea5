@@ -1817,15 +1817,68 @@ for (j in 1:length(n)) {
     betas[i,j+4] = modelss$coef[2]
   }
 }
-betas_dataC2 &lt;- data.frame(betas)
-apply(betas_dataC2,2,mean)</code></pre>
-<pre><code>##       X1       X2       X3       X4       X5       X6       X7       X8 
-## 2.522044 2.461283 2.495008 2.507052 2.500449 2.500658 2.500329 2.500213</code></pre>
-<pre class="r"><code>apply(betas_dataC2,2,var)</code></pre>
-<pre><code>##           X1           X2           X3           X4           X5 
-## 0.0241325532 0.0094700495 0.0019400706 0.0009732684 0.0242301507 
-##           X6           X7           X8 
-## 0.0096418018 0.0019407267 0.0009742514</code></pre>
+betas_dataC2 &lt;- data.frame(betas)</code></pre>
+<p>Esperanza de los Betas</p>
+<pre class="r"><code>eb1 &lt;- apply(betas_dataC2[5:8],2,mean)
+knitr::kable(
+eb1 
+)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X5</td>
+<td align="right">2.500450</td>
+</tr>
+<tr class="even">
+<td>X6</td>
+<td align="right">2.500658</td>
+</tr>
+<tr class="odd">
+<td>X7</td>
+<td align="right">2.500329</td>
+</tr>
+<tr class="even">
+<td>X8</td>
+<td align="right">2.500213</td>
+</tr>
+</tbody>
+</table>
+<p>Varianza de los Betas</p>
+<pre class="r"><code>knitr::kable(
+apply(betas_dataC2[5:8],2,var)
+)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X5</td>
+<td align="right">0.0242302</td>
+</tr>
+<tr class="even">
+<td>X6</td>
+<td align="right">0.0096418</td>
+</tr>
+<tr class="odd">
+<td>X7</td>
+<td align="right">0.0019407</td>
+</tr>
+<tr class="even">
+<td>X8</td>
+<td align="right">0.0009743</td>
+</tr>
+</tbody>
+</table>
 <p>Grafica</p>
 <pre class="r"><code>#graficos Caso 2
 
